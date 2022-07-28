@@ -1,0 +1,91 @@
+Tutorial link:
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs
+
+
+* navigate to project folder
+* npm init - click enter on everything that comes up
+* this creates a package.json file - like  a bundle file which has the list of all the packages in it - has the packages and versions that you want - 
+    * when you send the project to someone else, they can do ```npm init``` to install all the relevant packages for the project
+    * it's like metadata
+* ```npm install express``` - install and puts into a 'node_modules' folder
+* ```npm install eslint --save-dev``` 
+    * dependencies are what will be used during production and shouldn't use the --save-dev
+    * but if it's something we're using as a developer tool only (like testing (express, mocha), use --save-dev)
+      which won't add it to the package.json for others to download
+    * eslint will give you every function that's built in when you write an object (e.g., console or 'hello') when you add the '.' - console.
+    * unsure what this does - used more of an example
+
+* make a js file - index.js
+* add ```var express = require('express')``` to the top of the js file - pulls in the library - pulls in a function and assigns it to the express vairable, but not actually calling it
+* then call the function using ```var app = express()``` in the next line - create a server
+* ```var port = 3000``` create a port number called 3000 - on your computer you can have loads of different ports, so you need to assign it a port number
+
+---
+
+* ```npm install express-generator -g``` - -g is a global flag - to install globally
+- didn't work so i did ```npx express-generator``` to just run it in the project
+* then ```npm install``` to install it and get all the relevant folders
+* npm install nunjucks
+* npm install eslint --save-dev
+* npm install nodemon --save-dev
+* npm install sass
+* npm install chokidar #this works with sass??
+* npm install govuk-frontend
+
+* if you do npm start it'll run node ./bin/www because of this in package.json
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+* if you go to http://localhost:3000/ it'll say Express
+
+SettingUp mkdir src      
+➜  SettingUp cd src
+➜  src mkdir scss
+➜  src cd scss
+➜  scss touch main.scss
+
+* add these scripts to package.json:
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www & npm run scss",
+    "serverstart": "DEBUG=nodetester:* npm run devstart",
+    "scss": "sass --watch src/scss/main.scss public/stylesheets/main.css"
+  }
+* now when we do ```npm tun serverstart``` it runs the server and dependent scripts
+  * and under public > stylesheets > main.css all the CSS is imported
+* if you refresh your http://localhost:3000/ - you'll get helpful info about whats happening
+  GET / 304 116.951 ms - -
+  GET /stylesheets/style.css 200 1.794 ms - 117
+
+* create a html file in the public
+* put html for a page template in https://design-system.service.gov.uk/styles/page-template/
+* stick components into relevant areas - e.g., https://design-system.service.gov.uk/components/accordion/
+
+* make sure to run ```npm run serverstart``` for server to run
+
+* use cmd - ^ - R to clear the cache in the browser if things aren't showing as you expect
+
+------
+
+narrative:
+- we created an express app with the express generator
+- we then went through and installed all necessary packages
+- we then set up our scripts in package.json (which is like a blueprint for anyone else who downloads it, so they can have a light download and do npm install to get all the packages)
+- we then created a folder for the styling (src folder and, within it, scss folder with a main.scss file)
+- within the public folder we created a main.css file to take the compiled and converted css
+- once we created a html file, we made sure javascript and the styling were pointing to the right location
+- we then created a javascript file govuk.js - and copied all the node modules in govuk-frontend > gokuk > all.js into the public > javascripts folder
+- made sure the styling in html-view was pointing the right location
+- in app.js we had to point our images, fonts and all other assets to the node modules (l30)
+  - thats all assets stuff done
+- required the nunjucks on l6 app.js
+- configured the nunjucks engine l16-22
+- moved teplate from public folder to views folder
+- created a nunjuck-view.html template and doing the same process w the nunjuck - making sure the style sheets pointed to the right location, and the javascript (l66) - and import on l1 a master template
+- we also set up some routes earlier - in index.js we created a route with a HTML path and one with a nunjucks - and used res.render to point to the associated template!
+
+- next:
+  - set up a git ignore
+  - push master project to github
+  - set up testing 
+

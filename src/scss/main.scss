@@ -1,0 +1,3 @@
+// imports scss from the govuk-front end - our main.css file
+// then this line: "scss": "sass --watch src/scss/main.scss public/stylesheets/main.css" in the scripts on the package.json will convert to css and put in main.css
+@import "../../node_modules/govuk-frontend/govuk/all";
