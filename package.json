@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www & npm run scss",
     "serverstart": "DEBUG=nodetester:* npm run devstart",
-    "scss": "sass --watch src/scss/main.scss public/stylesheets/main.css"
+    "scss": "sass --watch src/scss/main.scss public/stylesheets/main.css",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "chokidar": "^3.5.3",
