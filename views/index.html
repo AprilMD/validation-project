@@ -1,16 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-</head>
-<body>
-    <a href="./html" >HTML GOV PAGE</a>
-  <br/>
-  <a href="./nunjuck" >NUNJUCK GOV PAGE</a>
-  <br/>
-  <a href="./spacecats" >SPACECATS GOV PAGE</a>
-</body>
-</html>
+{% extends "govuk/template.njk" %}
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://frontend.design-system.service.gov.uk/supporting-ie8/#support-internet-explorer-8 #}
+  <!--[if IE 8]>
+    <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+    <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+{% endblock %} 
+
+{% block pageTitle %}
+<!-- {{ serviceName }} –  -->
+Confirm your identity
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }} 
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Section</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link">Subsection</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Confirm your identity
+    </h1>
+
+    <p class="govuk-body">Use this service to verify your ID documents and generate a proof of identity certificate.</p>
+    <p class="govuk-body">You have the option to share your identification documents with other services.</p class="govuk-body">
+
+    <h2 class="govuk-heading-m">How long it takes</h2>
+
+    <p class="govuk-body">
+      It will take around 5-10 minutes to complete this form. 
+    </p>
+    <p class="govuk-body">
+      There will be a follow up appointment to verify your ID. 
+      This will last no longer than 5 minutes and you can book this at a time that suits you.
+    </p>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p class="govuk-body">You will need two examples ID class="govuk-body":
+      <ul class="govuk-list govuk-list--bullet">
+        <li>one photographic ID</li>
+        <li>one proof of address</li>
+      </ul>   
+    </p>
+    
+    <p class="govuk-body">
+      <a href="/proof-of-id-checklist">See examples here</a>.
+    </p>
+
+    <p class="govuk-body">You will also need access to a smartphone or a digital camera to take a photo of your ID.</p class="govuk-body">
+
+    <a href="/what-is-your-name" role="button" draggable="false"
+      class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+      Start now
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+        viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+      </svg>
+    </a>
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">
+        Subsection
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a href="#">
+              Related link
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Related link
+            </a>
+          </li>
+          <li>
+            <a href="#" class="govuk-!-font-weight-bold">
+              More <span class="govuk-visually-hidden">in Subsection</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
+</div>
+{% endblock %}
