@@ -19,4 +19,9 @@ describe('Index Page Test', () => {
     cy.contains('NUNJUCK').click()
     cy.url().should('include', '/nunjuck')
   })
+  it('Takes us to spacecats page', () => {
+    cy.visit('/')
+    cy.contains('SPACECATS').click()
+    cy.url().should('include', '/spacecats')
+  })
 })
