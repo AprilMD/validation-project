@@ -20,6 +20,13 @@ router.get('/nunjuck', function(req, res, next) {
   res.render('nunjuck-view.html');
 });
 
+router.get('/spacecats', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+  // res.redirect('html-view.html'); 
+  res.render('nunjuck-view.html');
+});
+
+
 
 
 module.exports = router;
