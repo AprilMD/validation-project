@@ -12,3 +12,5 @@ node_modules/
 .tmuxp.*
 .idea
 tmp/
+cypress/videos
+cypress/screenshots
