@@ -32,7 +32,7 @@
 
       <h1 class="govuk-heading-xl" data-cy="page-heading">What is your name?</h1>
 
-      <form class="form" action="/what-is-your-postcode" method="post">
+      <form class="form" action="/what-is-your-postcode" method="post" novalidate>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
         {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
@@ -49,10 +49,7 @@
           },
           id: "first-name",
           name: "first-name",
-          value: data['first-name'],
-          attributes: {
-            required: true
-          }
+          value: data['first-name']
         }) }}
 
         {{ govukInput({
@@ -77,10 +74,7 @@
           },
           id: "surname",
           name: "surname",
-          value: data['surname'],
-          attributes: {
-            required: true
-          }
+          value: data['surname']
         }) }}
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
