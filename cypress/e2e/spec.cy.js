@@ -26,10 +26,15 @@ describe('Start Page Test', () => {
   it("Loads successfully", () => {
     cy.visit('/') // fails if not running server
   })
-  it("Has heading with 'confirm your identity'", () => {
+  it("Has title with 'confirm your identity'", () => {
     cy.visit('/')
     cy.get('title').should('contain', 'Confirm your identity')
   })
+  it("Has heading with 'confirm your identity'", () => {
+    cy.visit('/')
+    cy.get('[data-cy="page-heading"]').should('contain', 'Confirm your identity')
+  })
+
 
   
 })
