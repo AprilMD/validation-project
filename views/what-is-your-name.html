@@ -1,0 +1,93 @@
+{% extends "govuk/template.njk" %}
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://frontend.design-system.service.gov.uk/supporting-ie8/#support-internet-explorer-8 #}
+  <!--[if IE 8]>
+    <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+    <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+{% endblock %} 
+
+{% block pageTitle %}
+ {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl" data-cy="page-heading">What is your name?</h1>
+
+      <form class="form" action="/what-is-your-postcode" method="post">
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+          {{ govukInsetText({
+            text: "This needs to match your ID."
+          }) }}
+          
+        {{ govukInput({
+          label: {
+            text: "First Name",
+            classes: "govuk-label--l",
+            isPageHeading: false
+          },
+          id: "first-name",
+          name: "first-name",
+          value: data['first-name'],
+          attributes: {
+            required: true
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Middle Name(s)",
+            classes: "govuk-label--l",
+            isPageHeading: false
+          },
+          hint: {
+            text: "Leave blank if none"
+          },
+          id: "middle-name",
+          name: "middle-name",
+          value: data['middle-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Surname",
+            classes: "govuk-label--l",
+            isPageHeading: false
+          },
+          id: "surname",
+          name: "surname",
+          value: data['surname'],
+          attributes: {
+            required: true
+          }
+        }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

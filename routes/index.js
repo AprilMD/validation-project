@@ -26,6 +26,13 @@ router.get('/spacecats', function(req, res, next) {
   res.render('nunjuck-view.html');
 });
 
+router.get('/what-is-your-name', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+  // res.redirect('html-view.html'); 
+  res.render('what-is-your-name.html');
+});
+
+
 
 
 
