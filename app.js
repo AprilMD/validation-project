@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var nunjucks = require('nunjucks')
 
+var config = require('./config.js')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -22,6 +23,9 @@ nunjucks.configure([
   autoescape: true,
   express: app
 });
+
+// add variables that are available in all views
+app.locals.serviceName = config.serviceName
 
 app.use(logger('dev'));
 app.use(express.json());

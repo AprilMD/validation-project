@@ -18,8 +18,7 @@
 {% endblock %} 
 
 {% block pageTitle %}
-<!-- {{ serviceName }} –  -->
-Confirm your identity
+{{ serviceName }}
 {% endblock %}
 
 {% block header %}
@@ -47,12 +46,14 @@ Confirm your identity
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">
-      Confirm your identity
+    <h1 
+      class="govuk-heading-xl"
+      data-cy="page-heading">
+      {% if serviceName %} {{ serviceName }} {% endif %}
     </h1>
 
     <p class="govuk-body">Use this service to verify your ID documents and generate a proof of identity certificate.</p>
-    <p class="govuk-body">You have the option to share your identification documents with other services.</p class="govuk-body">
+    <p class="govuk-body">You have the option to share your identification documents with other services.</p>
 
     <h2 class="govuk-heading-m">How long it takes</h2>
 
@@ -66,7 +67,8 @@ Confirm your identity
 
     <h2 class="govuk-heading-m">Before you start</h2>
 
-    <p class="govuk-body">You will need two examples ID class="govuk-body":
+    <p class="govuk-body">
+      You will need two examples of ID
       <ul class="govuk-list govuk-list--bullet">
         <li>one photographic ID</li>
         <li>one proof of address</li>
