@@ -17,10 +17,10 @@ The prototype was built using the [GOV.UK Prototype Kit](https://govuk-prototype
 The project was generated using the [Express application generator](https://expressjs.com/en/starter/generator.html), which creates a project skeleton with the following dependencies:
 
     - express: our server
-    - cookie-parser
+    - cookie-parser: Parse cookie header and populate req.cookies
     - debug
     - http-errors
-    - morgan
+    - morgan: HTTP request logger
     - jade: uninstalled (templating engine, not needed in this project)
 
 Note: ^finish exploring what they all do and if they are all needed
