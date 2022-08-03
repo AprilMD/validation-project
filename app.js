@@ -5,9 +5,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var nunjucks = require('nunjucks')
+var nunjucks = require('nunjucks');
+const expressSession = require('express-session')
 
-var config = require('./config.js')
+var config = require('./config.js');
+var utils = require('./utils.js');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -34,6 +36,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // this makes it so that only the public folder can serve static content
 
 app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets')))
+
+// Session data in memory
+app.use(expressSession({
+  secret: 'SpaceCats',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 4,
+    secure: false
+  },
+  name: 'SpaceCats',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(utils.autoStoreData);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
