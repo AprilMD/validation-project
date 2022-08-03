@@ -32,25 +32,41 @@
 
       <h1 class="govuk-heading-xl" data-cy="page-heading">What is your name?</h1>
 
-      <form class="form" action="/what-is-your-postcode" method="post" novalidate>
+      <form class="form" action="/what-is-your-name" method="post" novalidate>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
         {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-          {{ govukInsetText({
-            text: "This needs to match your ID."
-          }) }}
-          
-        {{ govukInput({
-          label: {
-            text: "First Name",
-            classes: "govuk-label--l",
-            isPageHeading: false
-          },
-          id: "first-name",
-          name: "first-name",
-          value: data['first-name']
+        {{ govukInsetText({
+          text: "This needs to match your ID."
         }) }}
+          
+        {% if firstNameIsMissing %}
+          {{ govukInput({
+            label: {
+              text: "First Name",
+              classes: "govuk-label--l",
+              isPageHeading: false
+            },
+            id: "first-name",
+            name: "first-name",
+            value: data['first-name'],
+            errorMessage: {
+              text: "Enter first name"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: {
+              text: "First Name",
+              classes: "govuk-label--l",
+              isPageHeading: false
+            },
+            id: "first-name",
+            name: "first-name",
+            value: data['first-name']
+          }) }}
+        {% endif %}
 
         {{ govukInput({
           label: {
@@ -66,16 +82,32 @@
           value: data['middle-name']
         }) }}
 
-        {{ govukInput({
-          label: {
-            text: "Surname",
-            classes: "govuk-label--l",
-            isPageHeading: false
-          },
-          id: "surname",
-          name: "surname",
-          value: data['surname']
-        }) }}
+        {% if surnameIsMissing %}
+          {{ govukInput({
+            label: {
+              text: "Surname",
+              classes: "govuk-label--l",
+              isPageHeading: false
+            },
+            id: "surname",
+            name: "surname",
+            value: data['surname'],
+            errorMessage: {
+              text: "Enter surname"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: {
+              text: "Surname",
+              classes: "govuk-label--l",
+              isPageHeading: false
+            },
+            id: "surname",
+            name: "surname",
+            value: data['surname']
+          }) }}        
+        {% endif %}
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
@@ -84,4 +116,10 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block bodyEnd %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script src="/javascripts/govuk.js"></script>
+  <script>window.GOVUKFrontend.initAll()</script>
 {% endblock %}

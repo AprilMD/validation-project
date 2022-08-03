@@ -32,7 +32,24 @@ router.get('/what-is-your-name', function(req, res, next) {
   res.render('what-is-your-name.html');
 });
 
+/* GET nunjuck GOVUK page. */
+router.get('/what-is-your-name', function(req, res, next) {
+  res.render('what-is-your-name.html');
+});
 
+/* POST nunjuck GOVUK page. */
+router.post('/what-is-your-name', function(req, res, next) {
+  var firstNameIsMissing = req.body["first-name"].length == 0;
+  var surnameIsMissing = req.body["surname"].length == 0;
+  if(firstNameIsMissing || surnameIsMissing) {
+    res.render("what-is-your-name.html", {
+      firstNameIsMissing: firstNameIsMissing,
+      surnameIsMissing: surnameIsMissing
+    });
+  } else {
+    res.render('what-is-your-postcode.html');
+  }
+});
 
 
 
