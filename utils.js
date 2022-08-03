@@ -12,8 +12,6 @@ exports.autoStoreData = function (req, res, next) {
     for (var j in req.session.data) {
       res.locals.data[j] = req.session.data[j]
     }
-
-    console.log("Saved keys in data: " + Object.keys(res.locals.data))
   
     next()
   }

@@ -6,7 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var nunjucks = require('nunjucks');
-const expressSession = require('express-session')
+var expressSession = require('express-session')
 
 var config = require('./config.js');
 var utils = require('./utils.js');

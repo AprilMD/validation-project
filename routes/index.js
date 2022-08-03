@@ -35,8 +35,6 @@ router.post('/what-is-your-name', function(req, res) {
   var firstNameIsMissing = req.body["first-name"].length == 0;
   var surnameIsMissing = req.body["surname"].length == 0;
 
-  console.log("Name entered? " + req.session.data['first-name'] + " " + req.session.data['surname']);
-
   if(firstNameIsMissing || surnameIsMissing) {
     res.render("what-is-your-name.html", {
       firstNameIsMissing: firstNameIsMissing,
