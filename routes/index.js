@@ -43,11 +43,16 @@ router.post('/what-is-your-name', function(req, res) {
   } else {
     res.redirect('/what-is-your-postcode');
   }
-
 });
 
 router.get('/what-is-your-postcode', function(req, res) {
   res.render('what-is-your-postcode.html');
 });
+
+router.get('/check-answers', function(req, res) {
+  res.render('check-answers.njk');
+});
+
+
 
 module.exports = router;

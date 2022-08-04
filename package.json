@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon --ext js,html,json --exec ./bin/www & npm run scss",
+    "devstart": "nodemon --ext js,html,json,njk --exec ./bin/www & npm run scss",
     "serverstart": "DEBUG=nodetester:* npm run devstart",
     "scss": "sass --watch src/scss/main.scss public/stylesheets/main.css",
     "cypress:open": "cypress open",
