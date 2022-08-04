@@ -52,7 +52,13 @@
             name: "first-name",
             value: data['first-name'],
             errorMessage: {
-              text: "Enter first name"
+              text: "Enter first name",
+              attributes: {
+                "data-cy": "first-name-error-message" 
+              }
+            },
+            attributes: {
+              "data-cy": "first-name"
             }
           }) }}
         {% else %}
@@ -64,7 +70,10 @@
             },
             id: "first-name",
             name: "first-name",
-            value: data['first-name']
+            value: data['first-name'],
+            attributes: {
+              "data-cy": "first-name"
+            }
           }) }}
         {% endif %}
 
@@ -92,8 +101,14 @@
             id: "surname",
             name: "surname",
             value: data['surname'],
+            attributes: {
+              "data-cy": "surname"
+            },
             errorMessage: {
-              text: "Enter surname"
+              text: "Enter surname",
+              attributes: {
+                "data-cy": "surname-error-message"
+              }
             }
           }) }}
         {% else %}
@@ -105,7 +120,10 @@
             },
             id: "surname",
             name: "surname",
-            value: data['surname']
+            value: data['surname'],
+            attributes: {
+              "data-cy": "surname"
+            }
           }) }}        
         {% endif %}
 
