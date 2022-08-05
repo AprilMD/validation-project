@@ -32,8 +32,6 @@
 
       <h1 class="govuk-heading-xl" data-cy="page-heading">What is your postcode?</h1>
 
-      <p>Welcome {{ data['first-name'] }} {{ data['surname'] }}</p>
-
       <form class="form" action="/address-look-up" method="post">
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
