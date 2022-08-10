@@ -35,6 +35,10 @@ router.get('/what-is-your-postcode', function(req, res) {
   res.render('what-is-your-postcode.njk');
 });
 
+router.get('/how-to-upload', function(req, res) {
+  res.render('how-to-upload.njk');
+});
+
 router.get('/check-answers', function(req, res) {
   res.render('check-answers.njk');
 });
