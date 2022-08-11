@@ -19,6 +19,7 @@
     "govuk-frontend": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "node-fetch": "2.0",
     "nunjucks": "^3.2.3",
     "sass": "^1.54.0"
   },

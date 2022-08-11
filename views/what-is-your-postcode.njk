@@ -32,18 +32,40 @@
 
       <h1 class="govuk-heading-xl" data-cy="page-heading">What is your postcode?</h1>
 
-      <form class="form" action="/address-look-up" method="post">
+      <form class="form" action="/what-is-your-postcode" method="post">
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {{ govukInput({
-          label: {
-            text: "Postcode"
-          },
-          classes: "govuk-input--width-10",
-          id: "postcode",
-          name: "postcode"
-        }) }}
+        {% if postcodeIsMissing %}
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "postcode",
+            name: "postcode",
+            value: data['postcode'],
+            errorMessage: {
+              text: "Enter postcode",
+              attributes: {
+              "data-cy": "postcode-error-message" 
+              }
+            },
+            attributes: {
+              "data-cy": "first-name"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "postcode",
+            name: "postcode",
+            value: data['postcode']
+          }) }}
+        {% endif %}
 
         <button class="govuk-button" data-module="govuk-button">Find Address</button>
 
