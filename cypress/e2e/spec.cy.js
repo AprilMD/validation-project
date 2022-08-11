@@ -67,3 +67,27 @@ describe('"What is your postcode?" Page', () => {
     cy.get('[data-cy="page-heading"]').should('contain', 'What is your postcode?')
   })
 })
+
+describe('"How to upload" page', () => { 
+  it("Loads successfully", () => {
+    cy.visit('/how-to-upload')
+  })
+  it("Has title with 'confirm your identity'", () => {
+    cy.visit('/how-to-upload')
+    cy.get('title').should('contain', 'Confirm your identity')
+  })
+  it("Has heading with 'How to upload'", () => {
+    cy.visit('/how-to-upload')
+    cy.get('[data-cy="page-heading"]').should('contain', 'How to upload')
+  })
+  it("Has a video element with controls", () => {
+    cy.visit('/how-to-upload')
+    cy.get('[data-cy="video"]').should('have.attr', 'controls')
+  })
+
+  it("Has an expandable details component", () => {
+    cy.visit('/how-to-upload')
+    cy.get('[data-cy="details"]').click()
+    cy.get('.govuk-details__text').should('be.visible')
+  })
+})

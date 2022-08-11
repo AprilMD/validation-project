@@ -58,17 +58,21 @@ router.post('/what-is-your-postcode', function(req, res) {
         req.session.data['addresses'] = newArray;
         res.redirect('/address-look-up');
     })
-  }
-});
-
+  });
+  
 router.get('/address-look-up', function(req, res) {
   res.render('address-look-up.njk', {
     addresses: req.session.data['addresses']
   });
 });
 
-router.post('/check-answers', function(req, res) {
+router.get('/how-to-upload', function(req, res) {
+  res.render('how-to-upload.njk');
+});
+
+router.get('/check-answers', function(req, res) {
   res.render('check-answers.njk');
 });
+
 
 module.exports = router;
