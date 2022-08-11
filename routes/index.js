@@ -1,5 +1,5 @@
 var express = require('express');
-const fetch = require('node-fetch');
+var axios = require('axios');
 
 var router = express.Router();
 
@@ -42,21 +42,24 @@ router.post('/what-is-your-postcode', function(req, res) {
       postcodeIsMissing
     });
   } else {
-    fetch(`https://api.getaddress.io/find/${postCode}?api-key=pww_urTjWEWGwnhLm8P4mQ36214`)
-    .then(res => res.json())
-    .then(json => {
-        console.log(json);
-        const newArray = [];
-        for (address of json.addresses) {
-          const addressObj = {
-            "value": address,
-            "text": address
-          };
-          newArray.push(addressObj);
-        }
-        console.log(newArray);
-        req.session.data['addresses'] = newArray;
-        res.redirect('/address-look-up');
+    axios
+    .get(`https://api.getaddress.io/find/${postCode}?api-key=pww_urTjWEWGwnhLm8P4mQ36214`)
+    .then(res => {
+      const addresses = res.data.addresses;
+      console.log(addresses);
+      let newArray = [];
+      for (address of addresses) {
+        const addressObj = {
+          "value": address,
+          "text": address
+        };
+        newArray.push(addressObj);
+      }
+      console.log(newArray);
+      req.session.data['addresses'] = newArray;
+    })
+    .then(() => {
+      res.redirect('/address-look-up')
     })
   }
 });
