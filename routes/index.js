@@ -58,7 +58,8 @@ router.post('/what-is-your-postcode', function(req, res) {
         req.session.data['addresses'] = newArray;
         res.redirect('/address-look-up');
     })
-  });
+  }
+});
   
 router.get('/address-look-up', function(req, res) {
   res.render('address-look-up.njk', {
