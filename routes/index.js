@@ -74,7 +74,49 @@ router.get('/how-to-upload', function(req, res) {
   res.render('how-to-upload.njk');
 });
 
-router.post('/check-answers', function(req, res) {
+router.get('/upload-photo-id', function(req, res) {
+  res.render('upload-photo-id.njk');
+});
+
+router.post('/upload-photo-id', function(req, res) {
+  const dateArray = [req.body['expiration-date-day'],req.body['expiration-date-month'],req.body['expiration-date-year']];
+  const date = new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
+
+  console.log("\n input " + `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
+  console.log("date " + date);
+  const sameDay = date.getUTCDate() - parseInt(dateArray[0]) == 0;
+  const sameMonth = date.getMonth() - (parseInt(dateArray[1]) - 1) == 0;
+  const sameYear = date.getFullYear() - parseInt(dateArray[2]) == 0;
+  const valid = sameDay && sameMonth & sameYear ? true : false;
+  console.log("valid? " + valid + "\n");
+  console.log("in the past? " + ((date - Date.now())<0));
+
+  if (req.body['photo-id-type'] == "") {
+    res.render('upload-photo-id.njk', {
+      errorIdType: true
+    });
+  } else if (req.body['photo-ID'] == "") {
+    res.render('upload-photo-id.njk', {
+      errorNoIdFile: true
+    });
+  } else if (dateArray.includes("")) {
+    res.render('upload-photo-id.njk', {
+      errorNoDate: true
+    });
+  } else if (!valid)  {
+    res.render('upload-photo-id.njk', {
+      errorInvalidDate: true
+    });
+  } else if (date - Date.now() < 0){
+    res.render('upload-photo-id.njk', {
+      errorPastDate: true
+    });
+  } else {
+    res.redirect('/check-answers');
+  }
+});
+
+router.get('/check-answers', function(req, res) {
   res.render('check-answers.njk');
 });
 
