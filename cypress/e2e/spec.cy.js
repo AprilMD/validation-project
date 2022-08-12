@@ -66,6 +66,22 @@ describe('"What is your postcode?" Page', () => {
     cy.visit('/what-is-your-postcode')
     cy.get('[data-cy="page-heading"]').should('contain', 'What is your postcode?')
   })
+  it.skip("Find Address button links to address look-up page when required fields are filled", () => {
+    cy.visit('/what-is-your-postcode')
+    cy.get('[data-cy="post-code"]').type('SE1 1TE')
+    cy.get('[data-cy="find-address-button"]').click()
+    cy.url().should('include', '/address-look-up')
+  })
+  it.skip("Links to the same page when Find Address button is pressed and required field is not filled", () => {
+    cy.visit('/what-is-your-postcode')
+    cy.get('[data-cy="find-address-button"]').click()
+    cy.url().should('include', '/what-is-your-postcode')
+  })
+  it.skip("Find Address button shows same page with error messages when required field is not filled", () => {
+    cy.visit('/what-is-your-postcode')
+    cy.get('[data-cy="find-address-button"]').click()
+    cy.get('[data-cy="enter-postcode-error-message"]')
+  })
 })
 
 describe('"How to upload" page', () => { 

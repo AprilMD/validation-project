@@ -43,24 +43,27 @@ router.post('/what-is-your-postcode', function(req, res) {
     });
   } else {
     axios
-    .get(`https://api.getaddress.io/find/${postCode}?api-key=pww_urTjWEWGwnhLm8P4mQ36214`)
+    .get(`https://api.getaddress.io/find/${postCode}?api-key=YrrqLVKHyUmnpJp485maKA36256&sort=true`)
     .then(res => {
       const addresses = res.data.addresses;
-      console.log(addresses);
+      // console.log(addresses);
       let newArray = [];
-      for (address of addresses) {
+      for (const address of addresses) {
         const addressObj = {
           "value": address,
           "text": address
         };
         newArray.push(addressObj);
       }
-      console.log(newArray);
+      // console.log(newArray);
       req.session.data['addresses'] = newArray;
     })
     .then(() => {
       res.redirect('/address-look-up')
     })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 });
   
