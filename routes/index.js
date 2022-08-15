@@ -127,16 +127,36 @@ router.get('/check-answers', function(req, res) {
 });
 
 router.post('/check-answers', async function(req,res) {
-  const newUserData = new userData(
-    req.session.data
-  )
+  const data = req.session.data
+  const newUserData = new userData({
+    name: {
+      'first-name': data['first-name'],
+      'middle-name': data['middle-name'],
+      'surname': data['surname']
+    },
+    address: {
+      'address': data['address-look-up'],
+      'postcode': data['postcode']
+    },
+    photo_id: {
+      'photo-id-type': data['photo-id-type'],
+      'photo-ID': data['photo-ID'],
+      'expiration-date': `${data['expiration-date-day']}-${data['expiration-date-month']}-${data['expiration-date-year']}`
+    }
+  })
 
   try {
     await newUserData.save();
-    res.send(newUserData);
+    res.redirect('/thank-you-for-submitting');
+    
   } catch (err) {
     res.status(500).send(err);
   }
+
+})
+
+router.get('/thank-you-for-submitting', function(req,res) {
+  res.render('thank-you-for-submitting.njk');
 })
 
 module.exports = router;

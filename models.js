@@ -9,6 +9,11 @@ var UserDataSchema = new mongoose.Schema({
     address: {
         'address': String,
         'postcode': String
+    },
+    photo_id: {
+        'photo-id-type': String,
+        'photo-ID': String,
+        'expiration-date': String
     }
 })
 
