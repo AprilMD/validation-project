@@ -1,0 +1,82 @@
+{% extends "govuk/template.njk" %}
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://frontend.design-system.service.gov.uk/supporting-ie8/#support-internet-explorer-8 #}
+  <!--[if IE 8]>
+    <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+    <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+{% endblock %} 
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/what-is-your-postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Address lookup</h1>
+
+      
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Postcode</h2>
+
+      <p class="govuk-!-font-weight-bold">
+          {{ data["postcode"] }}
+          <a href="/what-is-your-postcode" class="govuk-!-display-inline-block govuk-!-padding-left-9 govuk-!-font-weight-regular">
+            Change
+            <span class="govuk-visually-hidden">your postcode</span>
+          </a>
+      </p>
+      <br/>
+
+
+      <form method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {% from "govuk/components/select/macro.njk" import govukSelect %}
+
+        {{ govukSelect({
+          id: "address-look-up",
+          name: "address-look-up",
+          label: {
+            text: "Select your address",
+            classes: "govuk-!-font-weight-bold govuk-body govuk-label--m govuk-!-margin-bottom-2"
+          },
+          items: addresses,
+          value: data['address-look-up']
+        }) }}
+
+        <br/>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+      <a href="/address-form">I can't find my address in this list</a>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script src="/javascripts/govuk.js"></script>
+  <script>window.GOVUKFrontend.initAll()</script>
+{% endblock %}
