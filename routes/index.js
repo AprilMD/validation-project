@@ -1,4 +1,5 @@
 var express = require('express');
+var userData = require("../models")
 var router = express.Router();
 
 /* GET home page. */
@@ -53,6 +54,18 @@ router.get('/check-answers', function(req, res) {
   res.render('check-answers.njk');
 });
 
+router.post('/check-answers', async function(req,res) {
+  const newUserData = new userData(
+    req.session.data
+  )
+
+  try {
+    await newUserData.save();
+    res.send(newUserData);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
 
 
 module.exports = router;
