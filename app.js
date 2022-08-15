@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var nunjucks = require('nunjucks');
 var expressSession = require('express-session')
+var mongoose = require('mongoose');
+var dotenv = require('dotenv').config();
 
 var config = require('./config.js');
 var utils = require('./utils.js');
@@ -15,9 +17,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 nunjucks.configure([
   "node_modules/govuk-frontend/",
   "views"
@@ -52,6 +51,20 @@ app.use(utils.autoStoreData);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+mongoose.connect(
+  process.env.DATABASE_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
+
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", () => {
+  console.log("MongoDB Connected successfully");
+}); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
