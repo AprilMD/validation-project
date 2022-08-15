@@ -1,0 +1,53 @@
+{% extends "govuk/template.njk" %}
+
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://frontend.design-system.service.gov.uk/supporting-ie8/#support-internet-explorer-8 #}
+  <!--[if IE 8]>
+    <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+    <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+{% endblock %} 
+
+{% block pageTitle %}
+ {{ serviceName }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Thank you for submitting your application
+    </h1>
+
+    <h2 class="govuk-heading-m">
+      Next steps
+    </h2>
+
+    <p class="govuk-body">You will receive an email or text message confirming your appointment.<br>
+      <br>
+      If you can no longer attend your time-slot please contact us on:<br>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>0121 1234567 or council@birmingham.com.</li>
+      </ul>
+    </p>
+    <p class="govuk-body">
+    These details will also be on your confirmation message.<br>
+    <br>
+    Once we have verified your identity we will store a proof of identity certificate. This can be used to access any of the government services you have selected.
+    </p>
+
+  </div>
+</div>
+{% endblock %}
