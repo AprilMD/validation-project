@@ -73,6 +73,10 @@ router.get('/address-look-up', function(req, res) {
   });
 });
 
+router.post('/address-look-up', function(req,res) {
+  res.redirect('/how-to-upload');
+})
+
 router.get('/how-to-upload', function(req, res) {
   res.render('how-to-upload.njk');
 });
@@ -85,14 +89,11 @@ router.post('/upload-photo-id', function(req, res) {
   const dateArray = [req.body['expiration-date-day'],req.body['expiration-date-month'],req.body['expiration-date-year']];
   const date = new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
 
-  console.log("\n input " + `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
-  console.log("date " + date);
   const sameDay = date.getUTCDate() - parseInt(dateArray[0]) == 0;
   const sameMonth = date.getMonth() - (parseInt(dateArray[1]) - 1) == 0;
   const sameYear = date.getFullYear() - parseInt(dateArray[2]) == 0;
   const valid = sameDay && sameMonth & sameYear ? true : false;
-  console.log("valid? " + valid + "\n");
-  console.log("in the past? " + ((date - Date.now())<0));
+
 
   if (req.body['photo-id-type'] == "") {
     res.render('upload-photo-id.njk', {
