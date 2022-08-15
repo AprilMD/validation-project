@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+  <a class="govuk-back-link" href="/upload-photo-id">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -61,7 +61,7 @@
             text: "Address"
           },
           value: {
-            html: data['address-look-up']
+            html: data['address-look-up'] + ", " + data['postcode']
           },
           actions: {
             items: [
@@ -78,31 +78,16 @@
             text: "Photo ID"
           },
           value: {
-            html: data['photo-ID']
+            html: data['photo-id-type'] + "<br>" +
+                  data['photo-ID']+ "<br>" +
+                  data['expiration-date-day']+ "-" + data['expiration-date-month']+ "-" + data['expiration-date-year']
           },
           actions: {
             items: [
               {
-                href: "#",
+                href: "/upload-photo-id",
                 text: "Change",
                 visuallyHiddenText: "photo ID"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Contact details"
-          },
-          value: {
-            html: data['contact-details']
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "contact details"
               }
             ]
           }
