@@ -1,5 +1,6 @@
 var express = require('express');
 var axios = require('axios');
+var dotenv = require('dotenv').config();
 
 var userData = require("../models")
 
@@ -45,7 +46,7 @@ router.post('/what-is-your-postcode', function(req, res) {
     });
   } else {
     axios
-    .get(`https://api.getaddress.io/find/${postCode}?api-key=YrrqLVKHyUmnpJp485maKA36256&sort=true`)
+    .get(`https://api.getaddress.io/find/${postCode}?api-key=${process.env.API_KEY}&sort=true`)
     .then(res => {
       const addresses = res.data.addresses;
       // console.log(addresses);
