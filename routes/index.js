@@ -50,7 +50,8 @@ router.post('/what-is-your-postcode', function(req, res) {
       const addresses = res.data.addresses;
       // console.log(addresses);
       let newArray = [];
-      for (const address of addresses) {
+      for (let address of addresses) {
+        address = trimAddress(address);
         const addressObj = {
           "value": address,
           "text": address
@@ -160,3 +161,12 @@ router.get('/thank-you-for-submitting', function(req,res) {
 })
 
 module.exports = router;
+
+function trimAddress(address){
+  address = address.replace(', ,',',');
+  if (!address.includes(', ,')) {
+    return address;
+  } else {
+    return trimAddress(address);
+  }
+}
